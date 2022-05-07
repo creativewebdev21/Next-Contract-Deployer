@@ -10,6 +10,7 @@
 - Wallet Connect: [Onboard JS (react hooks)](https://docs.blocknative.com/onboard/react-hooks).
 - Web3 library: [Ethers JS](https://docs.ethers.io/v5/).
 - Web Framework: [Next JS (create-next-app)](https://nextjs.org/docs/api-reference/create-next-app).
+- React Component Library: [material-ui (mui)](https://mui.com/)
 
 ![demo](https://user-images.githubusercontent.com/23249402/167275384-50a69d11-1929-429e-b440-075ade6aa375.gif)
 
