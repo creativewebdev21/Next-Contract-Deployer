@@ -49,8 +49,12 @@ const ButtonCreateERC721 = () => {
       {loading ? (
         <CircularProgress />
       ) : (
-        <Button onClick={handleButtonClick} disabled={loading}>
-          Create ERC721 Contract
+        <Button
+          variant="outlined"
+          onClick={handleButtonClick}
+          disabled={loading}
+        >
+          {wallet ? "Create Smart Contract" : "Connect Wallet"}
         </Button>
       )}
     </>
