@@ -9,8 +9,6 @@ const ButtonCreateERC721 = () => {
   const [{ wallet }, connect] = useConnectWallet();
   const [loading, setLoading] = useState(false);
 
-  console.log("WALLET", wallet);
-
   const deployContract = async () => {
     if (!wallet) {
       connect();
