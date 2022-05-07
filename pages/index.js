@@ -41,7 +41,7 @@ export default function Home() {
           </a>
 
           <a
-            href="https://rinkebyfaucet.com/"
+            href="https://github.com/SweetmanTech/next-contract-deployer"
             target="__blank"
             className={styles.card}
           >
