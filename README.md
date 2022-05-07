@@ -1,12 +1,31 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Next Contract Deployer
+
+- one-click smart contract deployment.
+- Networks: Polygon, Mumbai, Ethereum & Rinkeby (all EVM chains will work)
+- Warning: this is not audited.
+
+## Technologies used:
+
+- Wallet Connect: [Onboard JS (react hooks)](https://docs.blocknative.com/onboard/react-hooks).
+- Web3 library: [Ethers JS](https://docs.ethers.io/v5/).
+- Web Framework: [Next JS (create-next-app)](https://nextjs.org/docs/api-reference/create-next-app).
 
 ## Getting Started
 
-First, run the development server:
+```
+git clone git@github.com:SweetmanTech/next-contract-deployer.git
+cd next-contract-deployer
+```
+
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+Then, run the development server:
 
 ```bash
+npm i
 npm run dev
 # or
+yarn
 yarn dev
 ```
 
