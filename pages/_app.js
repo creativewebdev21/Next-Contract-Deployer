@@ -1,23 +1,19 @@
 import "../styles/globals.css";
 import { init } from "@web3-onboard/react";
 import injectedModule from "@web3-onboard/injected-wallets";
+import walletConnectModule from "@web3-onboard/walletconnect";
 
+const walletConnect = walletConnectModule();
 const injected = injectedModule();
 
 init({
-  wallets: [injected],
+  wallets: [injected, walletConnect],
   chains: [
     {
       id: "0x1",
       token: "ETH",
       label: "Ethereum Mainnet",
       rpcUrl: "https://mainnet.infura.io/v3/ababf9851fd845d0a167825f97eeb12b",
-    },
-    {
-      id: "0x3",
-      token: "tROP",
-      label: "Ethereum Ropsten Testnet",
-      rpcUrl: "https://ropsten.infura.io/v3/ababf9851fd845d0a167825f97eeb12b",
     },
     {
       id: "0x4",
@@ -30,6 +26,12 @@ init({
       token: "MATIC",
       label: "Matic Mainnet",
       rpcUrl: "https://matic-mainnet.chainstacklabs.com",
+    },
+    {
+      id: "0x13881",
+      token: "MATIC",
+      label: "Matic Mumbai",
+      rpcUrl: "https://matic-mumbai.chainstacklabs.com",
     },
   ],
   appMetadata: {

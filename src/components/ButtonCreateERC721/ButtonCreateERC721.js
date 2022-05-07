@@ -1,11 +1,13 @@
-import { Button } from "@mui/material";
+import { useState } from "react";
+import { Button, CircularProgress } from "@mui/material";
 import { useConnectWallet } from "@web3-onboard/react";
 import { ContractFactory, ethers } from "ethers";
 import abi from "./abi.json";
 import bytecode from "./bytecode.json";
 
 const ButtonCreateERC721 = () => {
-  const [{ wallet, connecting }, connect, disconnect] = useConnectWallet();
+  const [{ wallet }, connect] = useConnectWallet();
+  const [loading, setLoading] = useState(false);
 
   console.log("WALLET", wallet);
 
@@ -20,7 +22,6 @@ const ButtonCreateERC721 = () => {
 
     // Deploy the contract
     const factory = new ContractFactory(abi, bytecode, signer);
-    console.log("FACTORY", factory);
     const price = ethers.utils.formatUnits(
       await provider.getGasPrice(),
       "gwei"
@@ -31,10 +32,29 @@ const ButtonCreateERC721 = () => {
     };
     const contract = await factory.deploy(options);
     await contract.deployed();
-    console.log(`Deployment successful! Contract Address: ${contract.address}`);
   };
 
-  return <Button onClick={deployContract}>Create ERC721 Contract</Button>;
+  const handleButtonClick = async () => {
+    setLoading(true);
+    try {
+      await deployContract();
+    } catch (err) {
+      console.error(err);
+    }
+    setLoading(false);
+  };
+
+  return (
+    <>
+      {loading ? (
+        <CircularProgress />
+      ) : (
+        <Button onClick={handleButtonClick} disabled={loading}>
+          Create ERC721 Contract
+        </Button>
+      )}
+    </>
+  );
 };
 
 export default ButtonCreateERC721;
