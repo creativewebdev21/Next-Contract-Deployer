@@ -15,7 +15,7 @@ const ButtonCreateERC721 = () => {
       return;
     }
 
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const provider = new ethers.providers.Web3Provider(wallet?.provider);
     const signer = provider.getSigner();
 
     // Deploy the contract
