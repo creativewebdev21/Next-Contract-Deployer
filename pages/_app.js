@@ -35,9 +35,9 @@ init({
     },
   ],
   appMetadata: {
-    name: "Blocknative",
+    name: "one-click contract",
     icon: "<svg><svg/>",
-    description: "Demo app for Onboard V2",
+    description: "Deploy a smart contract",
     recommendedInjectedWallets: [
       { name: "MetaMask", url: "https://metamask.io" },
       { name: "Coinbase", url: "https://wallet.coinbase.com/" },
