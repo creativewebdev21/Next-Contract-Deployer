@@ -20,13 +20,9 @@ const ButtonCreateERC721 = () => {
 
     // Deploy the contract
     const factory = new ContractFactory(abi, bytecode, signer);
-    const price = ethers.utils.formatUnits(
-      await provider.getGasPrice(),
-      "gwei"
-    );
+
     const options = {
       gasLimit: 10000000,
-      gasPrice: ethers.utils.parseUnits(price, "gwei"),
     };
     const contract = await factory.deploy(options);
     await contract.deployed();
