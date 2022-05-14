@@ -5,7 +5,7 @@ import { ContractFactory, ethers } from "ethers";
 import abi from "./abi.json";
 import bytecode from "./bytecode.json";
 
-const ButtonCreateERC721 = () => {
+const ButtonCreateERC721 = ({ onDeployed }) => {
   const [{ wallet }, connect] = useConnectWallet();
   const [loading, setLoading] = useState(false);
 
@@ -22,10 +22,12 @@ const ButtonCreateERC721 = () => {
     const factory = new ContractFactory(abi, bytecode, signer);
 
     const options = {
-      gasLimit: 10000000,
+      gasLimit: 3215060,
     };
     const contract = await factory.deploy(options);
-    await contract.deployed();
+    const receipt = await contract.deployed();
+    console.log("RECEIPT", receipt);
+    onDeployed?.(receipt.address);
   };
 
   const handleButtonClick = async () => {
