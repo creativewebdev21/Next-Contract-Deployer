@@ -2,6 +2,7 @@ import ButtonCreateERC721 from "../ButtonCreateERC721";
 import styles from "../../../styles/Home.module.css";
 import MintNFT from "../MintNFT";
 import { useState } from "react";
+import { Box } from "@mui/system";
 
 const HomePage = () => {
   const [contractAddress, setContractAddress] = useState();
@@ -11,14 +12,22 @@ const HomePage = () => {
       <h1 className={styles.title}>Hyperstructures</h1>
       <p>(on Polygon & ETH)</p>
 
-      <p className={styles.description}>
-        Get started by deploying your own smart contract.
-      </p>
-
       {contractAddress ? (
         <MintNFT contractAddress={contractAddress} />
       ) : (
-        <ButtonCreateERC721 onDeployed={setContractAddress} />
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+          p={3}
+        >
+          <p className={styles.description}>
+            Get started by deploying your own smart contract.
+          </p>
+          <ButtonCreateERC721 onDeployed={setContractAddress} />
+        </Box>
       )}
 
       <div className={styles.grid}>
