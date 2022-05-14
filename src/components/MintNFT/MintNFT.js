@@ -4,6 +4,7 @@ import { useConnectWallet } from "@web3-onboard/react";
 import { ethers } from "ethers";
 import { useMemo, useState } from "react";
 import abi from "../ButtonCreateERC721/abi.json";
+import ShareMintedNFT from "../ShareMintedNFT/ShareMintedNFT";
 
 const MintNFT = ({ contractAddress }) => {
   const [{ wallet }] = useConnectWallet();
@@ -11,6 +12,7 @@ const MintNFT = ({ contractAddress }) => {
   const [tokenURI, setTokenURI] = useState(
     "https://gateway.pinata.cloud/ipfs/QmZnFEAdfxGfVGTn9UoR2c66RD8VdzAeV9NuMWJsj1jD7b"
   );
+  const [tokenId, setTokenId] = useState();
 
   const provider = new ethers.providers.Web3Provider(wallet?.provider);
   const signer = provider.getSigner();
@@ -22,10 +24,16 @@ const MintNFT = ({ contractAddress }) => {
     [contractAddress]
   );
 
+  const handleReceipt = (receipt) => {
+    console.log("RECEIPT", receipt);
+    console.log("RECEIPT", receipt.events[0].args.tokenId.toString());
+    setTokenId(receipt.events[0].args.tokenId.toString());
+  };
+
   const mint = async () => {
     const tx = await contract.mint(recipient, tokenURI);
     const receipt = await tx.wait();
-    console.log("RECEIPT", receipt);
+    handleReceipt(receipt);
   };
 
   console.log("CONTRACT ADDRESS", contractAddress);
@@ -44,6 +52,7 @@ const MintNFT = ({ contractAddress }) => {
         onChange={(e) => setTokenURI(e.target.value)}
       />
       <Button onClick={mint}>Mint NFT</Button>
+      <ShareMintedNFT tokenId={tokenId} contractAddress={contractAddress} />
     </Box>
   );
 };
