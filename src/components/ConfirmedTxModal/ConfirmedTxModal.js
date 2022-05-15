@@ -9,7 +9,7 @@ const ConfirmedTxModal = ({ tokenId, contractAddress }) => {
   const [open, setOpen] = useState();
 
   useEffect(() => {
-    setOpen(contractAddress, tokenId);
+    setOpen(contractAddress && tokenId);
   }, [contractAddress, tokenId]);
 
   const osLink = openSeaService.getTokenLink(
