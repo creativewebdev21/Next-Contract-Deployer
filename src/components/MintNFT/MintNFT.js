@@ -6,6 +6,7 @@ import { useMemo, useState } from "react";
 import abi from "../ButtonCreateERC721/abi.json";
 import PendingTxModal from "../PendingTxModal";
 import ConfirmedTxModal from "../ConfirmedTxModal";
+import etherscanService from "../../utils/etherscanService";
 
 const MintNFT = ({ contractAddress }) => {
   const [{ wallet }] = useConnectWallet();
@@ -24,6 +25,19 @@ const MintNFT = ({ contractAddress }) => {
         ? new ethers.Contract(contractAddress, abi, signer)
         : false,
     [contractAddress]
+  );
+
+  const contractBlockscanAddress = useMemo(
+    () => etherscanService.getAddressLink(wallet.chains[0].id, contractAddress),
+    [contractAddress]
+  );
+  const ownerBlockscanAddress = useMemo(
+    () =>
+      etherscanService.getAddressLink(
+        wallet.chains[0].id,
+        wallet?.accounts?.[0]?.address
+      ),
+    [wallet]
   );
 
   const handleReceipt = (receipt) => {
@@ -54,17 +68,11 @@ const MintNFT = ({ contractAddress }) => {
       </Typography>
       <h3>
         ERC721 contract (owned by{" "}
-        <a
-          target="__blank"
-          href={`https://rinkeby.etherscan.io/address/${wallet?.accounts?.[0]?.address}`}
-        >
+        <a target="__blank" href={ownerBlockscanAddress}>
           you
         </a>
         ):{" "}
-        <a
-          target="__blank"
-          href={`https://rinkeby.etherscan.io/address/${contractAddress}`}
-        >
+        <a target="__blank" href={contractBlockscanAddress}>
           {contractAddress}
         </a>
       </h3>
