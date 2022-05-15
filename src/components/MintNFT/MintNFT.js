@@ -27,8 +27,6 @@ const MintNFT = ({ contractAddress }) => {
   );
 
   const handleReceipt = (receipt) => {
-    console.log("RECEIPT", receipt);
-    console.log("RECEIPT", receipt.events[0].args.tokenId.toString());
     const newTokenId = receipt.events[0].args.tokenId.toString();
     setTokenId(newTokenId);
     setPendingTx(false);
@@ -42,8 +40,6 @@ const MintNFT = ({ contractAddress }) => {
     handleReceipt(receipt);
   };
 
-  console.log("CONTRACT ADDRESS", contractAddress);
-  console.log("CONTRACT", contract);
   return (
     <Box
       sx={{

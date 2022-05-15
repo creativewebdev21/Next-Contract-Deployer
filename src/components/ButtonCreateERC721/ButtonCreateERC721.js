@@ -29,7 +29,6 @@ const ButtonCreateERC721 = ({ onDeployed, name, symbol }) => {
     const contract = await factory.deploy(name, symbol, options);
     setPendingTx("Deploying creator ERC721 contract.");
     const receipt = await contract.deployed();
-    console.log("RECEIPT", receipt);
     onDeployed?.(receipt.address);
   };
 
