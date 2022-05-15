@@ -26,7 +26,7 @@ const ButtonCreateERC721 = ({ onDeployed }) => {
     const options = {
       gasLimit: 3215060,
     };
-    const contract = await factory.deploy(options);
+    const contract = await factory.deploy("myName", "SMBL", options);
     setPendingTx("Deploying creator ERC721 contract.");
     const receipt = await contract.deployed();
     console.log("RECEIPT", receipt);
