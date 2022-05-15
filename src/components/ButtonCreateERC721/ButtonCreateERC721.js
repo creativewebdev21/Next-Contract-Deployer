@@ -4,16 +4,18 @@ import { useConnectWallet } from "@web3-onboard/react";
 import { ContractFactory, ethers } from "ethers";
 import abi from "./abi.json";
 import bytecode from "./bytecode.json";
+import PendingTxModal from "../PendingTxModal";
 
-const ButtonCreateERC721 = () => {
+const ButtonCreateERC721 = ({ onDeployed, name, symbol }) => {
   const [{ wallet }, connect] = useConnectWallet();
-  const [loading, setLoading] = useState(false);
+  const [pendingTx, setPendingTx] = useState(false);
 
   const deployContract = async () => {
     if (!wallet) {
       connect();
       return;
     }
+    setPendingTx("Sign transaction deploying ERC721 smart contract.");
 
     const provider = new ethers.providers.Web3Provider(wallet?.provider);
     const signer = provider.getSigner();
@@ -22,35 +24,37 @@ const ButtonCreateERC721 = () => {
     const factory = new ContractFactory(abi, bytecode, signer);
 
     const options = {
-      gasLimit: 10000000,
+      gasLimit: 3215060,
     };
-    const contract = await factory.deploy(options);
-    await contract.deployed();
+    const contract = await factory.deploy(name, symbol, options);
+    setPendingTx("Deploying creator ERC721 contract.");
+    const receipt = await contract.deployed();
+    onDeployed?.(receipt.address);
   };
 
   const handleButtonClick = async () => {
-    setLoading(true);
     try {
       await deployContract();
     } catch (err) {
       console.error(err);
     }
-    setLoading(false);
+    setPendingTx(false);
   };
 
   return (
     <>
-      {loading ? (
+      {pendingTx ? (
         <CircularProgress />
       ) : (
         <Button
-          variant="outlined"
+          variant="contained"
           onClick={handleButtonClick}
-          disabled={loading}
+          disabled={pendingTx}
         >
           {wallet ? "Create Smart Contract" : "Connect Wallet"}
         </Button>
       )}
+      <PendingTxModal pendingTx={pendingTx} />
     </>
   );
 };
