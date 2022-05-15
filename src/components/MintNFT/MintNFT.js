@@ -11,7 +11,7 @@ const MintNFT = ({ contractAddress }) => {
   const [{ wallet }] = useConnectWallet();
   const [recipient, setRecipient] = useState(wallet?.accounts?.[0]?.address);
   const [tokenURI, setTokenURI] = useState(
-    "https://gateway.pinata.cloud/ipfs/QmZnFEAdfxGfVGTn9UoR2c66RD8VdzAeV9NuMWJsj1jD7b"
+    "ipfs://QmZMaWmwKCgmQLm6WUm7HXt9QNXgSzDKN7quFwnf4nv5QV"
   );
   const [tokenId, setTokenId] = useState();
   const [pendingTx, setPendingTx] = useState();
