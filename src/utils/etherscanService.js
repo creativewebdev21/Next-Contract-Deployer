@@ -1,5 +1,4 @@
 const getAddressLink = (chainId, address) => {
-  console.log("GETTING ADDRESS", address);
   switch (chainId) {
     case "0x4":
       return `https://rinkeby.etherscan.io/address/${address}`;
