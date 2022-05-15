@@ -6,7 +6,7 @@ import abi from "./abi.json";
 import bytecode from "./bytecode.json";
 import PendingTxModal from "../PendingTxModal";
 
-const ButtonCreateERC721 = ({ onDeployed }) => {
+const ButtonCreateERC721 = ({ onDeployed, name, symbol }) => {
   const [{ wallet }, connect] = useConnectWallet();
   const [pendingTx, setPendingTx] = useState(false);
 
@@ -26,7 +26,7 @@ const ButtonCreateERC721 = ({ onDeployed }) => {
     const options = {
       gasLimit: 3215060,
     };
-    const contract = await factory.deploy("myName", "SMBL", options);
+    const contract = await factory.deploy(name, symbol, options);
     setPendingTx("Deploying creator ERC721 contract.");
     const receipt = await contract.deployed();
     console.log("RECEIPT", receipt);

@@ -3,6 +3,7 @@ import styles from "../../../styles/Home.module.css";
 import MintNFT from "../MintNFT";
 import { useState } from "react";
 import { Box } from "@mui/system";
+import CreateERC721 from "../CreateERC721";
 
 const HomePage = () => {
   const [contractAddress, setContractAddress] = useState();
@@ -26,7 +27,7 @@ const HomePage = () => {
           <p className={styles.description}>
             Get started by deploying your own smart contract.
           </p>
-          <ButtonCreateERC721 onDeployed={setContractAddress} />
+          <CreateERC721 onDeployed={setContractAddress} />
         </Box>
       )}
 
