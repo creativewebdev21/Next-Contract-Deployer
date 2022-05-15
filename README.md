@@ -1,5 +1,7 @@
 # Next Contract Deployer
 
+![demo](https://user-images.githubusercontent.com/23249402/167275384-50a69d11-1929-429e-b440-075ade6aa375.gif)
+
 - [Demo](https://oneclickcontract.vercel.app/).
 - one-click smart contract deployment.
 - Networks: Polygon, Mumbai, Ethereum & Rinkeby (all EVM chains will work)
@@ -11,8 +13,6 @@
 - Web3 library: [Ethers JS](https://docs.ethers.io/v5/).
 - Web Framework: [Next JS (create-next-app)](https://nextjs.org/docs/api-reference/create-next-app).
 - React Component Library: [material-ui (mui)](https://mui.com/)
-
-![demo](https://user-images.githubusercontent.com/23249402/167275384-50a69d11-1929-429e-b440-075ade6aa375.gif)
 
 ## Getting Started
 
